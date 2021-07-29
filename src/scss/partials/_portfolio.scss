@@ -1,0 +1,219 @@
+.portfolio {
+    text-align: center;
+    background: $light-gray;
+    padding: 5em 5vw;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+
+    img {
+        display: block;
+    }
+
+    figcaption {
+        position: absolute;
+        top: 100%;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding: 1.5em;
+        background: rgba($color: $accent, $alpha: .5);
+        color: $white;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        transition: top ease-out 250ms;
+        
+    }
+
+    &:hover figcaption,
+    &:focus figcaption {
+        top: 0;
+    }
+}
+
+.portfolio-title {
+    color: $white;
+    font-size: 1.5rem;
+    margin-bottom: auto;
+
+    .featured & {
+        font-size: 4rem;
+    }
+}
+
+.portfolio-desc {
+    display: none;
+
+    .featured & {
+        display: block;
+    }
+}
+
+.portfolio-link {
+    color: $white;
+    font-weight: $fw-b;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-bottom: 2px solid $white;
+    align-self: flex-start;
+
+    &::after {
+        content: url(../img/arrow.svg);
+        display: inline-block;
+        width: .8em;
+        height: .8em;
+        margin-left: .5em;
+    }
+}
+
+@supports(display: grid) {
+    .portfolio-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include mq {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1em;
+        }
+
+        .portfolio-item.featured {
+            grid-column: span 2;
+            grid-row: 1;
+        }
+    }
+}
+
+.portfolio-modal {
+    position: fixed;
+    top: 2em;
+    bottom: 2em;
+    left: 2em;
+    right: 2em;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 0 0 0 3em rgba($color: black, $alpha: .5);
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    display: none;
+
+    &.is-open {
+        display: block;
+    }
+}
+
+.close-button-img {
+    width: 17px;
+    height: 17px;
+}
+
+.close-modal {
+    outline: none;
+    border: none;
+    background: white;
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    border-radius: 50%;
+    padding: 6px;
+    box-shadow: 0 0 5px rgba($color: #000000, $alpha: .5);
+    cursor: pointer;
+}
+
+.portfolio-header {
+    text-align: left;
+    padding: 5em 0;
+    margin-bottom: 2em;
+    background-size: cover;
+    background-position: center;
+}
+
+.header-one {
+    background-image: url(../img/portfolio-01.jpg);
+}
+
+.header-two {
+    background-image: url(../img/portfolio-02.jpg);
+}
+
+.header-three {
+    background-image: url(../img/portfolio-03.jpg);
+}
+
+.header-four {
+    background-image: url(../img/portfolio-04.jpg);
+}
+
+.header-five {
+    background-image: url(../img/portfolio-05.jpg);
+}
+
+
+.portfolio-title-box {
+    background: rgba($color: $accent, $alpha: .75);
+    padding: 3em;
+    color: white;
+    width: 70%;
+
+    .portfolio-title {
+        font-size: 3.5rem;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: white;
+            margin: 1em 0;
+        }
+    }
+}
+
+.portfolio-subtitle {
+    font-size: 1rem;
+}
+
+.portfolio-content {
+    text-align: left;
+    width: 85%;
+    margin: 0 auto;
+    padding-bottom: 2em;
+}
+
+.portfolio-full-width {
+    width: 100vw;
+    max-width: initial;
+    margin: 2em calc(50% - 50vw);
+    height: 20vh;
+    object-fit: cover;
+}
+
+@include mq {
+    .portfolio-pull-left {
+        width: 65%;
+        float: left;
+        margin-right: 2em;
+    }
+
+    .portfolio-pull-right {
+        width: 65%;
+        float: right;
+        margin-right: 2em;
+    }
+}
+
+@keyframes modalIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes modalOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+
